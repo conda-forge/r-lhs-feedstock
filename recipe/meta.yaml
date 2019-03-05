@@ -1,4 +1,4 @@
-{% set version = '0.16' %}
+{% set version = '1.0.1' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,16 +7,14 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: lhs_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/lhs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lhs/lhs_{{ version }}.tar.gz
-  sha256: 9cd199c3b5b2be1736d585ef0fd39a00e31fc015a053333a7a319668d0809425
+  sha256: a4d5ac0c6f585f2880364c867fa94e6554698beb65d3678ba5938dd84fc6ea53
 
 build:
   merge_build_host: True  # [win]
-  number: 1000
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -33,9 +31,11 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base
+    - r-rcpp
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
+    - r-rcpp
 
 test:
   commands:
@@ -43,16 +43,35 @@ test:
     - "\"%R%\" -e \"library('lhs')\""  # [win]
 
 about:
-  home: http://lhs.r-forge.r-project.org
-  license: GPL (>= 2)
+  home: https://github.com/bertcarnell/lhs
+  license: GPL-3
   summary: Provides a number of methods for creating and augmenting Latin Hypercube Samples.
   license_family: GPL3
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
+    - conda-forge/r
+
+# Package: lhs
+# Title: Latin Hypercube Samples
+# Version: 1.0.1
+# Authors@R:  person(given = "Rob", family = "Carnell", role = c("aut", "cre"), email = "bertcarnell@gmail.com")
+# Description: Provides a number of methods for creating and augmenting Latin Hypercube Samples.
+# License: GPL-3
+# Encoding: UTF-8
+# LazyData: true
+# Depends: R (>= 3.4.0)
+# LinkingTo: Rcpp
+# Imports: Rcpp
+# Suggests: testthat, DoE.base, knitr, rmarkdown, covr
+# URL: https://github.com/bertcarnell/lhs
+# BugReports: https://github.com/bertcarnell/lhs/issues
+# RoxygenNote: 6.1.1
+# VignetteBuilder: knitr
+# NeedsCompilation: yes
+# Packaged: 2019-02-02 20:54:26 UTC; bertc
+# Author: Rob Carnell [aut, cre]
+# Maintainer: Rob Carnell <bertcarnell@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2019-02-03 11:00:14 UTC
