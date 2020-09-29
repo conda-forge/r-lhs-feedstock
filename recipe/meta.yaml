@@ -1,4 +1,4 @@
-{% set version = "1.0.2" %}
+{% set version = "1.1.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lhs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lhs/lhs_{{ version }}.tar.gz
-  sha256: e2945192740fb088b210786006b311d3d4e7da967733a1998380d597320c1158
+  sha256: f99dd625039c8d4b5653bfe362b1e1372a9a5a107db2a2eb46b92ec356edd6d1
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
