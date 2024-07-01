@@ -1,4 +1,4 @@
-{% set version = "1.1.6" %}
+{% set version = "1.2.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lhs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lhs/lhs_{{ version }}.tar.gz
-  sha256: e37fce44efe6a371677ba2f72f9e1e48270a0fdc60872d05def89270586cd23f
+  sha256: 6b4b773c6b322f1ffb3e2ef49c244ec8a3958a0346a1cc8f42f0d0951e8b0724
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,8 +24,10 @@ requirements:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - r-rcpp                     # [build_platform != target_platform]
     - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('m2w64_cxx') }}        # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
