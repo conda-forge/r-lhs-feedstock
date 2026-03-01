@@ -1,4 +1,4 @@
-{% set version = "1.2.0" %}
+{% set version = "1.2.1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lhs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lhs/lhs_{{ version }}.tar.gz
-  sha256: 6b4b773c6b322f1ffb3e2ef49c244ec8a3958a0346a1cc8f42f0d0951e8b0724
+  sha256: 6a585c738738ad14691667930124d9886035b6f5d1691481a31e004b7d31e23c
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
